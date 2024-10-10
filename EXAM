@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart'; // import siya yung keyword in Dart na nag a-allow satin to bring in external libraries or files into our code.
+// yung package keyword ang nag specifies na we're importing a package at yung flutter/material.dart is the name of the package.
+
+class Counter extends StatelessWidget { // from stateful ginawang stateless.
+  const Counter({super.key}); // const means constructor - ito din yung constructor ng counter class.
+
+  @override // nag indicates na we're overriding a method.
+  Widget build(BuildContext context) { // method that returns the UI of the widget. The build method is called every time the state changes.
+    int _counter = 0; // siya yung initial value ng counter.
+    void _increment(){ // methods that increments the counter - sya yung nag update sa UI
+     _counter++; 
+     print('Widget was tapped!');
+    }
+    return Row( // taga display ng current value ng _counter.
+      mainAxisAlignment: MainAxisAlignment.center, // dahil dito bakit nag center ang button sa output.
+      children: <Widget>[
+        GestureDetector(
+          onTap: _increment,
+          child: Container(
+            color: Colors.blue,
+            padding: const EdgeInsets.all(10.0),
+            child: const Text(
+              'Increment',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+        const SizedBox(width: 16),
+        Text('Count: $_counter'),
+      ],
+    );
+  }
+}
+
+void main() { // eto yung return type of the method.
+  runApp(
+    const MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Counter(),
+        ),
+      ),
+    ),
+  );
+}
